@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?android:selectableItemBackground">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/vIcon"
+        tools:src="@mipmap/ic_launcher"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="@dimen/default_margin"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/vAbbreviation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/black"
+        android:layout_marginStart="@dimen/default_margin"
+        android:layout_marginTop="@dimen/large_margin"
+        app:layout_constraintStart_toEndOf="@+id/vIcon"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="EUR" />
+
+    <TextView
+        android:id="@+id/vName"
+        tools:text="Euro"
+        android:layout_marginStart="@dimen/default_margin"
+        android:layout_marginBottom="@dimen/large_margin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@+id/vIcon"
+        app:layout_constraintTop_toBottomOf="@+id/vAbbreviation"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <EditText
+        android:id="@+id/vCurrencyEdit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/default_margin"
+        android:hint="@string/currency_input_hint"
+        android:imeOptions="actionDone"
+        android:inputType="numberDecimal"
+        android:maxWidth="@dimen/et_max_width"
+        android:textAlignment="viewEnd"
+        app:layout_constraintHorizontal_bias="1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/vName"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="250" />
+</androidx.constraintlayout.widget.ConstraintLayout>

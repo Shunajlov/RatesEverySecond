@@ -1,0 +1,74 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    defaultConfig {
+        applicationId "com.ihavenodomain.rateseverysecond"
+        compileSdkVersion versions.android.targetSDK
+        buildToolsVersion "29.0.0"
+        minSdkVersion versions.android.minSDK
+        targetSdkVersion versions.android.targetSDK
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    def apiEndpoint = apiEndpoint ?: '"Define apiEndpoint URL"'
+
+    android.buildTypes.each { type ->
+        type.buildConfigField 'String', 'apiEndpoint', apiEndpoint
+    }
+}
+
+dependencies {
+
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.lib.kotlin"
+
+    //AndroidX
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.lib.kotlin"
+    implementation "org.jetbrains.kotlin:kotlin-reflect:$versions.lib.kotlin"
+    implementation "androidx.appcompat:appcompat:$versions.lib.appcompat"
+    implementation "androidx.core:core-ktx:$versions.lib.core_ktx"
+    implementation "androidx.recyclerview:recyclerview:$versions.lib.recycler_view"
+    implementation "androidx.constraintlayout:constraintlayout:$versions.lib.constraintlayout"
+    // Lifecycle
+    implementation "androidx.lifecycle:lifecycle-extensions:$versions.lib.lifecycle_extensions"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$versions.lib.lifecycle"
+    // Network
+    implementation "com.squareup.retrofit2:retrofit:$versions.lib.retrofit"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$versions.lib.retrofit"
+    implementation "com.squareup.retrofit2:converter-gson:$versions.lib.retrofit"
+    implementation "com.google.code.gson:gson:$versions.lib.gson"
+    // DI
+    api "org.koin:koin-core:$versions.lib.koin"
+    api "org.koin:koin-core-ext:$versions.lib.koin"
+    api "org.koin:koin-android:$versions.lib.koin"
+    api "org.koin:koin-androidx-scope:$versions.lib.koin"
+    api "org.koin:koin-androidx-viewmodel:$versions.lib.koin"
+    // Timber
+    implementation "com.jakewharton.timber:timber:$versions.lib.timber"
+    //RxJava2
+    implementation "io.reactivex.rxjava2:rxandroid:$versions.lib.rxandroid"
+    implementation "io.reactivex.rxjava2:rxjava:$versions.lib.rxjava2"
+    implementation "io.reactivex.rxjava2:rxkotlin:$versions.lib.rxkotlin"
+    // Tests
+    testImplementation "junit:junit:$versions.lib.junit"
+    androidTestImplementation "androidx.test.ext:junit:$versions.lib.androidx_junit"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$versions.lib.espresso_core"
+    // Utils
+    implementation "de.hdodenhof:circleimageview:$versions.lib.circleimageview"
+}
