@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName
 data class CurrencyInfo(
     @SerializedName("base")
     @Expose
-    var base: String? = null,
+    var base: String = "",
     @SerializedName("date")
     @Expose
     var date: String? = null,

@@ -9,14 +9,24 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import org.koin.androidx.viewmodel.ext.android.viewModel
+import androidx.recyclerview.widget.LinearSmoothScroller
+import androidx.recyclerview.widget.RecyclerView
 import com.ihavenodomain.rateseverysecond.R
 import com.ihavenodomain.rateseverysecond.ui.main.list.CurrenciesListAdapter
 import kotlinx.android.synthetic.main.main_fragment.*
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainFragment : Fragment() {
     private val viewModel: MainViewModel by viewModel()
     private lateinit var adapter: CurrenciesListAdapter
+
+    /**
+     * used for smooth scrolling to the top of the list
+     * @see smoothScrollToTop()
+     */
+    private lateinit var smoothScroller: RecyclerView.SmoothScroller
+
+    var baseUpdated = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,6 +38,12 @@ class MainFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
+        smoothScroller = object : LinearSmoothScroller(context) {
+            override fun getVerticalSnapPreference(): Int {
+                return SNAP_TO_START
+            }
+        }
+
         initView()
 
         startObservingData()
@@ -37,7 +53,7 @@ class MainFragment : Fragment() {
         val clicker: CurrenciesListAdapter.ItemClickListener = object : CurrenciesListAdapter.ItemClickListener {
             override fun onItemClick(position: Int) {
                 viewModel.updateBaseCurrency(position)
-//                vItems.scrollToPosition(0)
+                baseUpdated = true
             }
         }
 
@@ -60,8 +76,26 @@ class MainFragment : Fragment() {
 
     private fun startObservingData() {
         viewModel.observeCurrencyInfo().observe(viewLifecycleOwner, Observer {
-            adapter.submitList(it)
+            if (it.isNotEmpty()) {
+                vItems.visibility = View.VISIBLE
+                vError.visibility = View.GONE
+
+                adapter.submitList(it)
+
+                if (baseUpdated) {
+                    smoothScrollToTop()
+                    baseUpdated = false
+                }
+            } else {
+                vItems.visibility = View.GONE
+                vError.visibility = View.VISIBLE
+            }
         })
+    }
+
+    private fun smoothScrollToTop() {
+        smoothScroller.targetPosition = 0
+        vItems.layoutManager?.startSmoothScroll(smoothScroller)
     }
 
     companion object {

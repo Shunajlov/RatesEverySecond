@@ -12,7 +12,7 @@ class ApiConnection private constructor() {
     val api: Api
         get() {
             val client = OkHttpClient.Builder()
-                .connectTimeout(10, TimeUnit.SECONDS)
+                .connectTimeout(3, TimeUnit.SECONDS)
                 .connectionPool(ConnectionPool(1, 2, TimeUnit.SECONDS))
                 .build()
             val retrofit = Retrofit.Builder()

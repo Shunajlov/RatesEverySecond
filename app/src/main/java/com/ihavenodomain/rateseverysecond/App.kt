@@ -2,6 +2,7 @@ package com.ihavenodomain.rateseverysecond
 
 import android.app.Application
 import com.ihavenodomain.rateseverysecond.di.data.RepositoryModule
+import com.ihavenodomain.rateseverysecond.di.domain.InteractorModule
 import com.ihavenodomain.rateseverysecond.di.presentation.ViewModelModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -26,7 +27,8 @@ class App: Application() {
     private fun assembleGraph() {
         val graph = listOf(
             ViewModelModule.module,
-            RepositoryModule.module
+            RepositoryModule.module,
+            InteractorModule.module
         )
 
         startKoin {

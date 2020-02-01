@@ -29,11 +29,6 @@ class CurrencyViewHolder(parent: ViewGroup): RecyclerView.ViewHolder(
         setIcon(name)
     }
 
-    fun setValueText(text: String = "") {
-        vCurrencyEdit.setText(text)
-        vCurrencyEdit.setSelection(text.length)
-    }
-
     fun setValue(value: Double) {
         val df = DecimalFormat("#.####")
         df.roundingMode = RoundingMode.FLOOR
