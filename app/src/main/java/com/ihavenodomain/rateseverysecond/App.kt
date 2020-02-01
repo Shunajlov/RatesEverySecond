@@ -18,10 +18,7 @@ class App: Application() {
             Timber.plant(Timber.DebugTree())
         }
 
-        PACKAGE_NAME = packageName
-
         assembleGraph()
-
     }
 
     private fun assembleGraph() {
@@ -36,10 +33,5 @@ class App: Application() {
             androidContext(this@App)
             modules(graph)
         }
-    }
-
-    companion object {
-        const val DEFAULT_CURRENCY = "EUR"
-        var PACKAGE_NAME: String = ""
     }
 }

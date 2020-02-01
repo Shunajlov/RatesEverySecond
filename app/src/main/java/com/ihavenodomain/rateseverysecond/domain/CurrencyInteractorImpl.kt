@@ -1,13 +1,12 @@
 package com.ihavenodomain.rateseverysecond.domain
 
-import com.ihavenodomain.rateseverysecond.App
 import com.ihavenodomain.rateseverysecond.model.CurrencyInfo
 import com.ihavenodomain.rateseverysecond.model.CurrencyRate
 import com.ihavenodomain.rateseverysecond.model.repo.CurrencyRepository
 import io.reactivex.Flowable
 
 class CurrencyInteractorImpl(private val repository: CurrencyRepository): CurrencyInteractor {
-    override var baseCurrency: String = App.DEFAULT_CURRENCY
+    override var baseCurrency: String = "EUR"
     override var currencyInfo: CurrencyInfo? = null
     override var multiplier: Double = 1.0
 
