@@ -7,6 +7,6 @@ import io.reactivex.Flowable
 class CurrencyRepositoryImpl: CurrencyRepository {
 
     override fun getCurrencyInfo(baseCurrency: String): Flowable<CurrencyInfo> {
-        return ApiConnection.instance.api.getCurrencyInfo(baseCurrency)
+        return ApiConnection.api.getCurrencyInfo(baseCurrency)
     }
 }
