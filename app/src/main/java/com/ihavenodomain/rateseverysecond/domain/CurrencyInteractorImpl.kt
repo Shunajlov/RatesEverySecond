@@ -7,7 +7,7 @@ import io.reactivex.Single
 
 class CurrencyInteractorImpl(private val repository: CurrencyRepository): CurrencyInteractor {
     override var baseCurrency: String = "EUR"
-    override var currencyInfo: CurrencyInfo? = null
+    @Volatile override var currencyInfo: CurrencyInfo? = null
     override var multiplier: Double = 1.0
 
     override fun observeCurrencyList(): Single<List<CurrencyRate>> {
