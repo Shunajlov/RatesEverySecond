@@ -31,7 +31,7 @@ class MainViewModel(
             Flowable.interval(0, 1, TimeUnit.SECONDS, Schedulers.single())
                 .subscribeOn(Schedulers.io())
                 .flatMap {
-                    currencyInteractor.observeCurrencyList()
+                    currencyInteractor.observeCurrencyList().toFlowable()
                 }
                 .doOnError {
                     currencyLiveData.postValue(listOf())

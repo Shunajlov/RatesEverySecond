@@ -2,7 +2,7 @@ package com.ihavenodomain.rateseverysecond.domain
 
 import com.ihavenodomain.rateseverysecond.model.CurrencyInfo
 import com.ihavenodomain.rateseverysecond.model.CurrencyRate
-import io.reactivex.Flowable
+import io.reactivex.Single
 
 interface CurrencyInteractor {
     var baseCurrency: String
@@ -11,7 +11,7 @@ interface CurrencyInteractor {
 
     var multiplier: Double
 
-    fun observeCurrencyList(): Flowable<List<CurrencyRate>>
+    fun observeCurrencyList(): Single<List<CurrencyRate>>
 
     fun getRatesList(): List<CurrencyRate>
 }

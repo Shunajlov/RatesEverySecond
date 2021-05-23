@@ -3,14 +3,14 @@ package com.ihavenodomain.rateseverysecond.domain
 import com.ihavenodomain.rateseverysecond.model.CurrencyInfo
 import com.ihavenodomain.rateseverysecond.model.CurrencyRate
 import com.ihavenodomain.rateseverysecond.model.repo.CurrencyRepository
-import io.reactivex.Flowable
+import io.reactivex.Single
 
 class CurrencyInteractorImpl(private val repository: CurrencyRepository): CurrencyInteractor {
     override var baseCurrency: String = "EUR"
     override var currencyInfo: CurrencyInfo? = null
     override var multiplier: Double = 1.0
 
-    override fun observeCurrencyList(): Flowable<List<CurrencyRate>> {
+    override fun observeCurrencyList(): Single<List<CurrencyRate>> {
         return repository.getCurrencyInfo(baseCurrency)
             .map {
                 this.currencyInfo = it
