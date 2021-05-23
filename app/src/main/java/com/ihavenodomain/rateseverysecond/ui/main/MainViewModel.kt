@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import com.ihavenodomain.rateseverysecond.domain.CurrencyInteractor
 import com.ihavenodomain.rateseverysecond.model.CurrencyRate
 import com.ihavenodomain.rateseverysecond.utils.ErrorHandler
-import io.reactivex.Flowable
+import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
@@ -28,10 +28,9 @@ class MainViewModel(
     private fun startObserveCurrencyRates() {
         unbind()
         currencyInfoDisposable =
-            Flowable.interval(0, 1, TimeUnit.SECONDS, Schedulers.single())
-                .subscribeOn(Schedulers.io())
+            Observable.interval(0, 1, TimeUnit.SECONDS, Schedulers.io())
                 .flatMap {
-                    currencyInteractor.observeCurrencyList().toFlowable()
+                    currencyInteractor.observeCurrencyList().toObservable()
                 }
                 .doOnError {
                     currencyLiveData.postValue(listOf())
