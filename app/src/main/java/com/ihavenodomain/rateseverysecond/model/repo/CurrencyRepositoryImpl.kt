@@ -1,12 +1,14 @@
 package com.ihavenodomain.rateseverysecond.model.repo
 
 import com.ihavenodomain.rateseverysecond.model.CurrencyInfo
-import com.ihavenodomain.rateseverysecond.model.remote.ApiConnection
+import com.ihavenodomain.rateseverysecond.model.remote.Api
 import io.reactivex.Flowable
 
-class CurrencyRepositoryImpl: CurrencyRepository {
+class CurrencyRepositoryImpl(
+    private val api: Api
+): CurrencyRepository {
 
     override fun getCurrencyInfo(baseCurrency: String): Flowable<CurrencyInfo> {
-        return ApiConnection.api.getCurrencyInfo(baseCurrency)
+        return api.getCurrencyInfo(baseCurrency)
     }
 }

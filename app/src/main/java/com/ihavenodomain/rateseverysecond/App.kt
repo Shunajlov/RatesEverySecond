@@ -1,6 +1,7 @@
 package com.ihavenodomain.rateseverysecond
 
 import android.app.Application
+import com.ihavenodomain.rateseverysecond.di.data.NetworkModule
 import com.ihavenodomain.rateseverysecond.di.data.RepositoryModule
 import com.ihavenodomain.rateseverysecond.di.domain.InteractorModule
 import com.ihavenodomain.rateseverysecond.di.presentation.ViewModelModule
@@ -23,6 +24,7 @@ class App: Application() {
 
     private fun assembleGraph() {
         val graph = listOf(
+            NetworkModule.module,
             ViewModelModule.module,
             RepositoryModule.module,
             InteractorModule.module

@@ -7,6 +7,6 @@ import org.koin.dsl.module
 
 object RepositoryModule {
     val module = module {
-        single { CurrencyRepositoryImpl() } bind CurrencyRepository::class
+        single { CurrencyRepositoryImpl(get()) } bind CurrencyRepository::class
     }
 }
