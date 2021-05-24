@@ -36,11 +36,11 @@ android {
 dependencies {
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.lib.kotlin"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
     //AndroidX
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.lib.kotlin"
-    implementation "org.jetbrains.kotlin:kotlin-reflect:$versions.lib.kotlin"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
     implementation "androidx.appcompat:appcompat:$versions.lib.appcompat"
     implementation "androidx.core:core-ktx:$versions.lib.core_ktx"
     implementation "androidx.recyclerview:recyclerview:$versions.lib.recycler_view"
@@ -54,21 +54,19 @@ dependencies {
     implementation "com.squareup.retrofit2:converter-gson:$versions.lib.retrofit"
     implementation "com.google.code.gson:gson:$versions.lib.gson"
     // DI
-    api "org.koin:koin-core:$versions.lib.koin"
-    api "org.koin:koin-core-ext:$versions.lib.koin"
-    api "org.koin:koin-android:$versions.lib.koin"
-    api "org.koin:koin-androidx-scope:$versions.lib.koin"
-    api "org.koin:koin-androidx-viewmodel:$versions.lib.koin"
+    api "io.insert-koin:koin-core:$versions.lib.koin"
+    api "io.insert-koin:koin-core-ext:$versions.lib.koin"
+    api "io.insert-koin:koin-android:$versions.lib.koin"
+    api "io.insert-koin:koin-androidx-scope:$versions.lib.koin"
+    api "io.insert-koin:koin-androidx-viewmodel:$versions.lib.koin"
     // Timber
     implementation "com.jakewharton.timber:timber:$versions.lib.timber"
     //RxJava2
     implementation "io.reactivex.rxjava2:rxandroid:$versions.lib.rxandroid"
-    implementation "io.reactivex.rxjava2:rxjava:$versions.lib.rxjava2"
     implementation "io.reactivex.rxjava2:rxkotlin:$versions.lib.rxkotlin"
     // Tests
     testImplementation "junit:junit:$versions.lib.junit"
     androidTestImplementation "androidx.test.ext:junit:$versions.lib.androidx_junit"
-    androidTestImplementation "androidx.test.espresso:espresso-core:$versions.lib.espresso_core"
     // Utils
     implementation "de.hdodenhof:circleimageview:$versions.lib.circleimageview"
 }
